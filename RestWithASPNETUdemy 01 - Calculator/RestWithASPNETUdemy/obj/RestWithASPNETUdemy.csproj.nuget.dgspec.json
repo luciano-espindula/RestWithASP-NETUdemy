@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 00 - Scaffold\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {}
+    "E:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {}
   },
   "projects": {
-    "D:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 00 - Scaffold\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {
+    "E:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 00 - Scaffold\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+        "projectUniqueName": "E:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
         "projectName": "RestWithASPNETUdemy",
-        "projectPath": "D:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 00 - Scaffold\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
-        "packagesPath": "C:\\Users\\Luciano\\.nuget\\packages\\",
-        "outputPath": "D:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 00 - Scaffold\\RestWithASPNETUdemy\\obj\\",
+        "projectPath": "E:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+        "packagesPath": "C:\\Users\\lucae\\.nuget\\packages\\",
+        "outputPath": "E:\\LAE\\Cursos UDemy\\Rest_ASP_NET\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Luciano\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\lucae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
