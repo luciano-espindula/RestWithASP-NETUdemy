@@ -8,6 +8,7 @@ namespace RestWithASPNETUdemy.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class CalculatorController : ControllerBase {
+
         // GET api/Calculator/sum/5/5
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber) {
