@@ -11,7 +11,9 @@ namespace RestWithASPNETUdemy.Controllers
     e expõe como endpoint REST
     */
     [Route("api/[controller]")]
+    [ApiVersion("1")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonsController : Controller
     {
         //Declaração do serviço usado
