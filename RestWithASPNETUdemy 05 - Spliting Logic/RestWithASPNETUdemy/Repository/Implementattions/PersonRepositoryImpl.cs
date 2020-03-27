@@ -4,14 +4,14 @@ using RestWithASPNETUdemy.Model.Context;
 using System;
 using System.Linq;
 
-namespace RestWithASPNETUdemy.Services.Implementattions
+namespace RestWithASPNETUdemy.Repository.Implementattions
 {
-    public class PersonServiceImpl : IPersonService
+    public class PersonRepositoryImpl : IPersonRepository
     {
 
         private MySQLContext _context;
 
-        public PersonServiceImpl(MySQLContext context)
+        public PersonRepositoryImpl(MySQLContext context)
         {
             _context = context;
         }
@@ -94,7 +94,7 @@ namespace RestWithASPNETUdemy.Services.Implementattions
             }
         }
 
-        private bool Exists(long? id)
+        public bool Exists(long? id)
         {
             return _context.Persons.Any(p => p.Id.Equals(id));
         }
