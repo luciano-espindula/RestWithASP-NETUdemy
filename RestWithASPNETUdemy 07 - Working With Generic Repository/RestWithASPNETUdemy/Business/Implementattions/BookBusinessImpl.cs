@@ -5,12 +5,12 @@ using RestWithASPNETUdemy.Repository.Generic;
 
 namespace RestWithASPNETUdemy.Business.Implementattions
 {
-    public class PersonBusinessImpl : IPersonBusiness
+     public class BookBusinessImpl : IBookBusiness
     {
 
-        private IRepository<Person> _repository;
+        private readonly IRepository<Book> _repository;
 
-        public PersonBusinessImpl(IRepository<Person> repository)
+        public BookBusinessImpl(IRepository<Book> repository)
         {
             _repository = repository;
         }
@@ -19,27 +19,27 @@ namespace RestWithASPNETUdemy.Business.Implementattions
         // nesse momento adicionamos o objeto ao contexto
         // e finalmente salvamos as mudanças no contexto
         // na base de dados
-        public Person Create(Person person)
+        public Book Create(Book book)
         {
-            return _repository.Create(person);
+            return _repository.Create(book);
         }
 
         // Método responsável por retornar uma pessoa
-        public Person FindById(long id)
+        public Book FindById(long id)
         {
             return _repository.FindById(id);
         }
 
         // Método responsável por retornar todas as pessoas
-        public List<Person> FindAll()
+        public List<Book> FindAll()
         {
             return _repository.FindAll();
         }
 
         // Método responsável por atualizar uma pessoa
-        public Person Update(Person person)
+        public Book Update(Book book)
         {
-            return _repository.Update(person);
+            return _repository.Update(book);
         }
 
         // Método responsável por deletar
@@ -49,4 +49,6 @@ namespace RestWithASPNETUdemy.Business.Implementattions
             _repository.Delete(id);
         }
     }
+
+    
 }
