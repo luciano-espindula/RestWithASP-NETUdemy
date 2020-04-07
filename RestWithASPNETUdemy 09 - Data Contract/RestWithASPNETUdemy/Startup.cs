@@ -7,8 +7,6 @@ using RestWithASPNETUdemy.Business.Implementattions;
 using RestWithASPNETUdemy.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using RestWithASPNETUdemy.Repository.Implementattions;
-using RestWithASPNETUdemy.Repository;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
