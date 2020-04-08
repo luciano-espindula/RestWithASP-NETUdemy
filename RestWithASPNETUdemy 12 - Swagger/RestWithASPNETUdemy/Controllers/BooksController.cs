@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Business;
 using RestWithASPNETUdemy.Data.VO;
-using Tapioca.HATEOAS;
 
 namespace RestWithASPNETUdemy.Controllers
 {
-
     /* Mapeia as requisições de http://localhost:{porta}/api/person/
     Por padrão o ASP.NET Core mapeia todas as classes que extendem Controller
     pegando a primeira parte do nome da classe em lower case [Person]Controller
@@ -15,71 +13,70 @@ namespace RestWithASPNETUdemy.Controllers
     [ApiVersion("1")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class PersonsController : Controller
+    public class BooksController : Controller
     {
         //Declaração do serviço usado
-        private IPersonBusiness _personBusiness;
+        private IBookBusiness _bookBusiness;
 
         /* Injeção de uma instancia de IPersonService ao criar
         uma instancia de PersonController */
-        public PersonsController(IPersonBusiness personBusiness)
+        public BooksController(IBookBusiness bookBusiness)
         {
-            _personBusiness = personBusiness;
+            _bookBusiness = bookBusiness;
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/
         //Get sem parâmetros para o FindAll --> Busca Todos
         [HttpGet]
-        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return Ok(_personBusiness.FindAll());
+            return Ok(_bookBusiness.FindAll());
+            //return Ok();
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}
         //recebendo um ID como no Path da requisição
         //Get com parâmetros para o FindById --> Busca Por ID
         [HttpGet("{id}")]
-        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
-            var person = _personBusiness.FindById(id);
-            if (person == null) return NotFound();
-            return Ok(person);
+            var book = _bookBusiness.FindById(id);
+            if (book == null) return NotFound();
+            return Ok(book);
+            //return Ok();
         }
 
         //Mapeia as requisições POST para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPost]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Post([FromBody]PersonVO person)
+        public IActionResult Post([FromBody]BookVO book)
         {
-            if (person == null) return BadRequest();
-            return new ObjectResult(_personBusiness.Create(person));
+            if (book == null) return BadRequest();
+            return new ObjectResult(_bookBusiness.Create(book));
+            //return Ok();
         }
 
         //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPut]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Put([FromBody]PersonVO person)
+        public IActionResult Put([FromBody]BookVO book)
         {
-            if (person == null) return BadRequest();
+            if (book == null) return BadRequest();
 
-            var updatedPerson = _personBusiness.Update(person);
+            var updatedPerson = _bookBusiness.Update(book);
             if (updatedPerson == null) return BadRequest();
 
             return new ObjectResult(updatedPerson);
+            //return Ok();
         }
 
 
         //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}
         //recebendo um ID como no Path da requisição
         [HttpDelete("{id}")]
-        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
-            _personBusiness.Delete(id);
+            _bookBusiness.Delete(id);
             return NoContent();
         }
     }
