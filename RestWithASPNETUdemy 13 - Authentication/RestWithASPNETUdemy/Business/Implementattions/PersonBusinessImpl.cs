@@ -6,47 +6,48 @@ using RestWithASPNETUdemy.Repository.Generic;
 
 namespace RestWithASPNETUdemy.Business.Implementattions
 {
-    public class BookBusinessImpl : IBookBusiness
+    public class PersonBusinessImpl : IPersonBusiness
     {
-        private IRepository<Book> _repository;
 
-        private readonly BookConverter _converter;
+        private IRepository<Person> _repository;
 
-        public BookBusinessImpl(IRepository<Book> repository)
+        private readonly PersonConverter _converter;
+
+        public PersonBusinessImpl(IRepository<Person> repository)
         {
             _repository = repository;
-            _converter = new BookConverter();
+            _converter = new PersonConverter();
         }
 
         // Metodo responsável por criar uma nova pessoa
         // nesse momento adicionamos o objeto ao contexto
         // e finalmente salvamos as mudanças no contexto
         // na base de dados
-        public BookVO Create(BookVO book)
+        public PersonVO Create(PersonVO person)
         {
-            var bookEntity = _converter.Parse(book);
-            bookEntity = _repository.Create(bookEntity);
-            return _converter.Parse(bookEntity);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         // Método responsável por retornar uma pessoa
-        public BookVO FindById(long id)
+        public PersonVO FindById(long id)
         {
             return _converter.Parse(_repository.FindById(id));
         }
 
         // Método responsável por retornar todas as pessoas
-        public List<BookVO> FindAll()
+        public List<PersonVO> FindAll()
         {
             return _converter.ParseList(_repository.FindAll());
         }
 
         // Método responsável por atualizar uma pessoa
-        public BookVO Update(BookVO book)
+        public PersonVO Update(PersonVO person)
         {
-            var bookEntity = _converter.Parse(book);
-            bookEntity = _repository.Update(bookEntity);
-            return _converter.Parse(bookEntity);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         // Método responsável por deletar
@@ -56,6 +57,4 @@ namespace RestWithASPNETUdemy.Business.Implementattions
             _repository.Delete(id);
         }
     }
-
-    
 }

@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Tapioca.HATEOAS;
+using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Data.VO;
 using System.Threading.Tasks;
-using Tapioca.HATEOAS;
 
 namespace RestWithASPNETUdemy.HyperMedia
 {
-    public class PersonEnricher : ObjectContentResponseEnricher<PersonVO>
+    public class BookEnricher : ObjectContentResponseEnricher<BookVO>
     {
-        protected override Task EnrichModel(PersonVO content, IUrlHelper urlHelper)
+        protected override Task EnrichModel(BookVO content, IUrlHelper urlHelper)
         {
-            var path = "api/v1/persons";
+            var path = "api/v1/books";
             var url = new { controller = path, id = content.Id };
 
             content.Links.Add(new HyperMediaLink()
@@ -19,7 +19,6 @@ namespace RestWithASPNETUdemy.HyperMedia
                 Rel = RelationType.self,
                 Type = ResponseTypeFormat.DefaultGet
             });
-
             content.Links.Add(new HyperMediaLink()
             {
                 Action = HttpActionVerb.POST,
@@ -27,7 +26,6 @@ namespace RestWithASPNETUdemy.HyperMedia
                 Rel = RelationType.self,
                 Type = ResponseTypeFormat.DefaultPost
             });
-
             content.Links.Add(new HyperMediaLink()
             {
                 Action = HttpActionVerb.PUT,
@@ -35,7 +33,6 @@ namespace RestWithASPNETUdemy.HyperMedia
                 Rel = RelationType.self,
                 Type = ResponseTypeFormat.DefaultPost
             });
-
             content.Links.Add(new HyperMediaLink()
             {
                 Action = HttpActionVerb.DELETE,
@@ -43,7 +40,6 @@ namespace RestWithASPNETUdemy.HyperMedia
                 Rel = RelationType.self,
                 Type = "int"
             });
-
             return null;
         }
     }
