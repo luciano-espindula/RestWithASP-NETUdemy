@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Tapioca.HATEOAS;
 using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Business;
 using RestWithASPNETUdemy.Data.VO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
-using Tapioca.HATEOAS;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestWithASPNETUdemy.Controllers
 {
-
     /* Mapeia as requisições de http://localhost:{porta}/api/person/
     Por padrão o ASP.NET Core mapeia todas as classes que extendem Controller
     pegando a primeira parte do nome da classe em lower case [Person]Controller
@@ -16,22 +15,22 @@ namespace RestWithASPNETUdemy.Controllers
     */
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class PersonsController : Controller
+    public class BooksController : Controller
     {
         //Declaração do serviço usado
-        private IPersonBusiness _personBusiness;
+        private IBookBusiness _bookBusiness;
 
-        /* Injeção de uma instancia de IPersonBusiness ao criar
+        /* Injeção de uma instancia de IPersonService ao criar
         uma instancia de PersonController */
-        public PersonsController(IPersonBusiness personBusiness)
+        public BooksController(IBookBusiness bookBusiness)
         {
-            _personBusiness = personBusiness;
+            _bookBusiness = bookBusiness;
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/
         //Get sem parâmetros para o FindAll --> Busca Todos
         [HttpGet]
-        [SwaggerResponse((200), Type = typeof(List<PersonVO>))]
+        [SwaggerResponse((200), Type = typeof(List<BookVO>))]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
@@ -39,26 +38,14 @@ namespace RestWithASPNETUdemy.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return new OkObjectResult(_personBusiness.FindAll());
-        }
-
-        [HttpGet("find-by-name")]
-        [SwaggerResponse((200), Type = typeof(List<PersonVO>))]
-        [SwaggerResponse(204)]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
-        [Authorize("Bearer")]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult GetByName([FromQuery] string firstName, [FromQuery] string lastName)
-        {
-            return new OkObjectResult(_personBusiness.FindByName(firstName, lastName));
+            return new OkObjectResult(_bookBusiness.FindAll());
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}
         //recebendo um ID como no Path da requisição
         //Get com parâmetros para o FindById --> Busca Por ID
         [HttpGet("{id}")]
-        [SwaggerResponse((200), Type = typeof(PersonVO))]
+        [SwaggerResponse((200), Type = typeof(BookVO))]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
@@ -66,59 +53,39 @@ namespace RestWithASPNETUdemy.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
-            var person = _personBusiness.FindById(id);
-            if (person == null) return NotFound();
-            return new OkObjectResult(person);
+            var book = _bookBusiness.FindById(id);
+            if (book == null) return NotFound();
+            return new OkObjectResult(book);
         }
 
         //Mapeia as requisições POST para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPost]
-        [SwaggerResponse((201), Type = typeof(PersonVO))]
+        [SwaggerResponse((201), Type = typeof(BookVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
         [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Post([FromBody]PersonVO person)
+        public IActionResult Post([FromBody]BookVO book)
         {
-            if (person == null) return BadRequest();
-            return new OkObjectResult(_personBusiness.Create(person));
+            if (book == null) return BadRequest();
+            return new OkObjectResult(_bookBusiness.Create(book));
         }
 
         //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPut]
-        [SwaggerResponse((202), Type = typeof(PersonVO))]
+        [SwaggerResponse((202), Type = typeof(BookVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
         [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Put([FromBody]PersonVO person)
+        public IActionResult Put([FromBody]BookVO book)
         {
-            if (person == null) return BadRequest();
-
-            var updatedPerson = _personBusiness.Update(person);
-            if (updatedPerson == null) return BadRequest();
-
-            return new OkObjectResult(updatedPerson);
-        }
-
-        //Mapeia as requisições Patch para http://localhost:{porta}/api/person/
-        //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
-        [HttpPatch]
-        [SwaggerResponse((202), Type = typeof(PersonVO))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
-        [Authorize("Bearer")]
-        [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Patch([FromBody]PersonVO person)
-        {
-            if (person == null) return BadRequest();
-
-            var updatedPerson = _personBusiness.Update(person);
-            if (updatedPerson == null) return BadRequest();
-
-            return new OkObjectResult(updatedPerson);
+            if (book == null) return BadRequest();
+            var updatedBook = _bookBusiness.Update(book);
+            if (updatedBook == null) return BadRequest();
+            return new OkObjectResult(updatedBook);
         }
 
 
@@ -132,7 +99,7 @@ namespace RestWithASPNETUdemy.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
-            _personBusiness.Delete(id);
+            _bookBusiness.Delete(id);
             return NoContent();
         }
     }
