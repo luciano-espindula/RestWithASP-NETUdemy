@@ -83,7 +83,7 @@ namespace RestWithASPNETUdemy
             services.AddScoped<IUserRepository, UserRepositoryImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
 
-            services.AddScoped(typeof(IPersonRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         private void ConfigureAuthentication(IServiceCollection services)

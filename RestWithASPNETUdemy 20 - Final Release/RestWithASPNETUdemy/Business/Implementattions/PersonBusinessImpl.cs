@@ -62,7 +62,7 @@ namespace RestWithASPNETUdemy.Business.Implementattions
             _repository.Delete(id);
         }
 
-        public PagedSearchDTO<PersonVO> FindWithPageSearch(string name, string sortDirection, int pageSize, int page)
+        public PagedSearchDTO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page)
         {
             page = page > 0 ? page - 1 : 0;
             string query = @"select * from persons p where 1 = 1 ";

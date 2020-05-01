@@ -12,6 +12,6 @@ namespace RestWithASPNETUdemy.Business
         List<PersonVO> FindByName(string firstName, string lastName);
         PersonVO Update(PersonVO person);
         void Delete(long id);
-        PagedSearchDTO<PersonVO> FindWithPageSearch(string name, string sortDirection, int pageSize, int page);
+        PagedSearchDTO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
     }
 }

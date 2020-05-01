@@ -63,7 +63,7 @@ namespace RestWithASPNETUdemy.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult GetPagedSearch([FromQuery] string name, string sortDirection, int pageSize, int page)
         {
-            return new OkObjectResult(_personBusiness.FindWithPageSearch(name, sortDirection, pageSize, page));
+            return new OkObjectResult(_personBusiness.FindWithPagedSearch(name, sortDirection, pageSize, page));
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}

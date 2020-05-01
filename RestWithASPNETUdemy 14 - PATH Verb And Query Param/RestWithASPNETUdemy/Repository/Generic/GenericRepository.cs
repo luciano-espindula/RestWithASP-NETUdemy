@@ -9,9 +9,11 @@ namespace RestWithASPNETUdemy.Repository.Generic
 {
     //A Implementação do repositório genérico recebe qualquer tipo T que implemente IRepository de mesmo tipo
     //desde que T extenda BaseEntity
-    public class GenericRepository<T> : IPersonRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly MySQLContext _context;
+
+        // Declaração de um dataset genérico
         private DbSet<T> dataset;
 
         public GenericRepository(MySQLContext context)
